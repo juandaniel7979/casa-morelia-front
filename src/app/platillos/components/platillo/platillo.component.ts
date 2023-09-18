@@ -9,7 +9,7 @@ export class PlatilloComponent {
 
   // @Input() platillo!: Platillo;
   @Input() platillo: Platillo={
-    id:'',
+    _id:'',
     precio:0,
     imagen:"",
     nombre:'',
@@ -25,10 +25,14 @@ export class PlatilloComponent {
   // }
 
   onAddtoCart(){
+    console.log(this.platillo)
   this.addedPlatillo.emit(this.platillo);
   }
 
   onShowDetail(){
-    this.showPlatillo.emit(this.platillo.id);
+    console.log(this.platillo._id)
+    this.showPlatillo.emit(this.platillo._id);
   }
+
+
 }

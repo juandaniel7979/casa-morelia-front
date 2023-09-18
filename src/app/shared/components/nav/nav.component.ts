@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../models/user.model';
-import { StoreService } from '../../services/store.service';
+import { StoreService } from 'src/app/platillos/services/store.service';
+// import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-nav',
@@ -15,7 +16,16 @@ export class NavComponent  {
   counter=0;
   profile:User | null = null;
 
-  constructor() { }
+  constructor(
+    private storeService:StoreService,
+    private authService:AuthService,
+    private usersService:UsersService
+  ) { }
+
+  activarMenu(){
+    this.activeMenu= !this.activeMenu;
+    console.log(this.activeMenu)
+  }
 
   // createUser(){
   //   this.usersService.create({
@@ -53,10 +63,10 @@ export class NavComponent  {
   // }
 
 
-  // ngOnInit(): void {
-  //   this.storeService.myCart$.subscribe(platillos=>{
-  //     this.counter = platillos.length;
-  //   });
-  // }
+  ngOnInit(): void {
+    this.storeService.myCart$.subscribe(platillos=>{
+      this.counter = platillos.length;
+    });
+  }
 
 }

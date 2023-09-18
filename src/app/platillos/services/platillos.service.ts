@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient,HttpParams,HttpErrorResponse, HttpStatusCode} from '@angular/common/http'
 import {retry,catchError, map} from 'rxjs/operators'
-import { CreatePlatilloDTO, Platillo, UpdatePlatilloDTO } from '../models/platillo.model';
 import { throwError, zip } from 'rxjs';
-import { Platillos } from '../models/platillos.model';
 import { environment } from 'src/environments/environment';
+import { CreatePlatilloDTO, Platillo, UpdatePlatilloDTO } from '../models/platillo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -49,14 +48,15 @@ export class PlatillosService {
     );
   }
 
-  fetchReadAndUpdate(id:string,dto:UpdatePlatilloDTO){
+  fetchReadAndUpdate(id:string,platillo:Platillo){
     return zip(
-      this.getPlatillo(id),
-      this.update(id,dto),
+      this.getPlatilloById(id),
+      this.updatePlatillo(platillo),
     )
   }
 
-  getPlatillo(id: string) {
+  getPlatilloById(id: string) {
+      console.log(`${this.apiUrl}/${id}`)
     return this.http.get<Platillo>(`${this.apiUrl}/${id}`)
     .pipe(
       catchError((error: HttpErrorResponse) => {
@@ -87,11 +87,11 @@ export class PlatillosService {
 
   // put, no es necesario pero se debería enviar toda la información requerida
   // patch, es mas para modificar un elemento puntual o todos
-  update(id:string, dto:UpdatePlatilloDTO){
-    return this.http.put<Platillo>(`${this.apiUrl}/${id}`,dto);
+  updatePlatillo(platillo: Platillo){
+    return this.http.put<Platillo>(`${this.apiUrl}/${platillo._id}`,platillo);
   }
 
-  delete(id:string){
+  deletePlatilloById(id:string){
     return this.http.delete<boolean>(`${this.apiUrl}/${id}`)
   }
 

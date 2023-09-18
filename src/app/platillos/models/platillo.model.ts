@@ -6,7 +6,7 @@ export interface Platillos{
 }
 
 export interface Platillo{
-  id:string;
+  _id:string;
   nombre:string;
   precio:number;
   imagen:string;
@@ -15,7 +15,7 @@ export interface Platillo{
 
 
 
-export interface CreatePlatilloDTO extends Omit<Platillo,'id'> {
+export interface CreatePlatilloDTO extends Omit<Platillo,'_id'> {
 }
 
 export interface UpdatePlatilloDTO extends Partial<CreatePlatilloDTO>{}

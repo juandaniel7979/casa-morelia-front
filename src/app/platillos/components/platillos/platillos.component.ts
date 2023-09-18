@@ -2,14 +2,15 @@
 import { Component, OnInit } from '@angular/core';
 import { switchMap, zip } from 'rxjs';
 import { single } from 'rxjs';
-import {StoreService} from '../../services/store.service'
-import {PlatillosService} from '../../services/platillos.service'
+import {PlatillosService} from '../../../platillos/services/platillos.service'
 import { CreatePlatilloDTO, Platillo } from '../../models/platillo.model';
+import { StoreService } from '../../services/store.service';
 
 
 @Component({
   selector: 'app-platillos',
   templateUrl: './platillos.component.html',
+  styleUrls: ['./platillos.component.scss']
 })
 export class PlatillosComponent implements OnInit {
   // today = new Date();
@@ -19,7 +20,7 @@ export class PlatillosComponent implements OnInit {
   platillos: Platillo[]= [];
   showPlatilloDetail = false;
   platilloChosen: Platillo={
-    id:'',
+    _id:'',
     precio:0,
     imagen:"",
     nombre:'',
@@ -53,13 +54,14 @@ export class PlatillosComponent implements OnInit {
 
 
   togglePlatilloDetail(){
+    console.log(this.showPlatilloDetail)
     this.showPlatilloDetail = !this.showPlatilloDetail;
   }
 
   onShowDetail(id:string){
     this.statusDetail='loading';
     this.togglePlatilloDetail();
-    this.platilloService.getPlatillo(id)
+    this.platilloService.getPlatilloById(id)
     .subscribe(data=>{
       // this.togglePlatilloDetail();
       this.platilloChosen = data;
@@ -72,15 +74,15 @@ export class PlatillosComponent implements OnInit {
   }
 
   readAndUpdate(id: string){
-    this.platilloService.getPlatillo(id)
+    this.platilloService.getPlatilloById(id)
     .pipe(
-      switchMap((platillo)=>this.platilloService.update(platillo.id,{nombre:'change'})),
+      switchMap((platillo)=>this.platilloService.updatePlatillo(platillo)),
     )
     .subscribe(data=>{
       console.log(data)
       });
       // Promise.all(doSomething(),doSomething2());
-      this.platilloService.fetchReadAndUpdate(id,{nombre:'nuevo'})
+      this.platilloService.fetchReadAndUpdate(id,this.platilloChosen)
       .subscribe(response=>{
         const read = response[0];
         const update = response[1];
@@ -97,28 +99,24 @@ export class PlatillosComponent implements OnInit {
     this.platilloService.create(platillo)
     .subscribe(data=> {
       this.platillos.unshift(data)
-    });
+    })
   }
 
   updatePlatillo(){
-    const changes ={
-      nombre:"Algun titulo"
-    }
-    const id = this.platilloChosen.id;
-    this.platilloService.update(id,changes)
+    this.platilloService.updatePlatillo(this.platilloChosen)
     .subscribe(data=>{
-      const platilloIndex = this.platillos.findIndex(item=> item.id===this.platilloChosen.id);
+      const platilloIndex = this.platillos.findIndex(item=> item._id===this.platilloChosen._id);
       this.platillos[platilloIndex] = data;
-      this.platilloChosen.nombre=changes.nombre;
+      this.platilloChosen=data;
     })
   }
 
 
   deletePlatillo(){
-    const id = this.platilloChosen.id;
-    this.platilloService.delete(id)
+    const id = this.platilloChosen._id;
+    this.platilloService.deletePlatilloById(id)
     .subscribe(()=>{
-      const platilloIndex = this.platillos.findIndex(item=> item.id===this.platilloChosen.id);
+      const platilloIndex = this.platillos.findIndex(item=> item._id===this.platilloChosen._id);
       this.platillos.splice(platilloIndex,1);
     })
   }

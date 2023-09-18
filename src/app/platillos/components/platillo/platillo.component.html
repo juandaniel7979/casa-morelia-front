@@ -15,9 +15,17 @@
       <img src="./assets/img/logo.jpg" style="width: 50%; height: 50%;" class="card-img-top " alt="Platillo 1">
       <div class="card-body">
           <h5 class="card-title">{{platillo.nombre}}</h5>
+          <p class="card-text">{{platillo._id}}.</p>
           <p class="card-text">{{platillo.descripcion}}.</p>
           <p class="card-text">{{platillo.precio | currency: 'COP'}}</p>
-          <a href="#" class="btn btn-primary">Agregar al carrito</a>
+          <div class="row">
+            <div class="col">
+              <a href="#" class="btn btn-dangerl">Borrar</a>
+            </div>
+            <div class="col">
+              <a href="#" (click)="onAddtoCart()" class="btn btn-primary stretched-link">Editar</a>
+            </div>
+          </div>
       </div>
   </div>
 </div>

@@ -1,0 +1,82 @@
+  <h1>
+    {{ currentPlatillo._id ? 'Editar' : 'Agregar' }}
+    Platillo
+    <small *ngIf="currentPlatillo._id">{{ currentPlatillo.nombre }}</small>
+  </h1>
+  <mat-divider class="mb-2"></mat-divider>
+
+  <br>
+  <div class="">
+
+    <div class="col-12 ">
+      <div class="card">
+        <div class="card-body">
+          <form class="form-group" [formGroup]="platilloForm" (ngSubmit)="onSubmit()">
+
+            <div class="col-12 mt-4 form-group">
+              <label for="name">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                required
+                name="nombre"
+                formControlName="nombre"
+              />
+            </div>
+
+            <div class="col-12 mt-4 form-group">
+              <label for="precio">Precio</label>
+              <input
+                class="form-control"
+                for="precio"
+                type="number"
+                required
+                formControlName="precio"
+              />
+            </div>
+
+
+            <div class="col-12 mt-4 form-group">
+              <label>Imagen</label>
+              <input
+                class="form-control"
+                for="imagen"
+                type="text"
+                formControlName="imagen"
+              />
+            </div>
+
+            <div class="col-12 mt-4 form-group">
+              <label>Descripcion</label>
+              <input
+                class="form-control"
+                for="descripcion"
+                type="text"
+                formControlName="descripcion"
+              />
+            </div>
+
+            <upload-file></upload-file>
+
+            <br>
+            <div class="col text-center ">
+              <button class="btn btn-success  form-control" (click)="onSubmit()">Guardar</button>
+
+            </div>
+
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12  ">
+
+      <mat-card>
+        <img [src]="currentPlatillo" alt="imagen del héroe" mat-card-image>
+      </mat-card>
+
+    </div>
+  </div>
+

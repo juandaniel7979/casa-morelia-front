@@ -1,6 +1,5 @@
-
 <div class="container my-4">
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+  <div class="row row-cols-lg-4 g-4 row-cols-1 row-cols-sm-2 row-cols-md-3">
     <app-platillo
       [platillo]="platillo"
      *ngFor="let platillo of platillos"
@@ -15,15 +14,42 @@
   <div *ngIf="platilloChosen">
     <button (click)="togglePlatilloDetail()">Close</button>
     <h1>{{platilloChosen.nombre}}</h1>
-    <swiper
-      [slidesPerView]="1"
-    >
+    <div *ngFor="let platillo of myShoppingCart" class="card">
+      <div class="card-title">
+        <span>{{platillo.nombre}}</span>
+
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <span>{{platillo.nombre}}</span>
+          </div>
+          <div class="col mt-5">
+              <div class="fab-container">
+                  <div class="fab-content">
+                    <div class="sub-button shadow ">
+                      <span (click)="deletePlatilloCart(platillo)" class="material-icons">delete</span>
+                    </div>
+                  </div>
+                </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <hr>
+    <!-- <swiper [slidesPerView]="1">
       <ng-template swiperSlide *ngFor="let img of platilloChosen.imagen">
         <img [src]="img" alt="">
       </ng-template>
-    </swiper>
+    </swiper> -->
     <p>{{platilloChosen.descripcion}}</p>
-    <button (click)="updatePlatillo()">Editar</button>
+    <button [routerLink]="['/platillo/edit', platilloChosen._id ]">Editar</button>
     <button (click)="deletePlatillo()">Eliminar</button>
   </div>
 </div>
+
+<app-fab
+  (cartClick)="togglePlatilloDetail()"
+></app-fab>

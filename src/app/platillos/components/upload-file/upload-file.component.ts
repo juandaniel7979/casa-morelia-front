@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 // import { Cloudinary } from 'cloudinary-core';
 
 @Component({
@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class UploadFileComponent {
   selectedFile: File | undefined;
+
+  @Output() fileUpload = new EventEmitter();
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +29,7 @@ export class UploadFileComponent {
         .subscribe((response: any) => {
           const imageUrl = response.secure_url;
           console.log('Image uploaded successfully:', imageUrl);
-
+          this.onFileUpload(imageUrl)
           // Handle storing the image URL in your database here
 
         }, (error) => {
@@ -35,4 +37,10 @@ export class UploadFileComponent {
         });
     }
   }
+  onFileUpload(url: string){
+    console.log(url)
+  this.fileUpload.emit(url);
+}
+
+
 }

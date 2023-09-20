@@ -10,18 +10,9 @@ import { CreatePlatilloDTO, Platillo, UpdatePlatilloDTO } from '../models/platil
 })
 export class PlatillosService {
 
-  // constructor(
-  //   private http: HttpClient
-  // ) {
-  // }
 
-  // getAllPlatillos(){
-  //   return this.http.get<Platillo[]>('https://fakestoreapi.com/platillos');
-  // }
 
   private apiUrl = `${environment.API_URL}/api/plato`;
-  // private apiUrl = 'https://young-sands-07814.herokapp.com/api/platillos';
-  // private apiUrl = 'http://localhost:3001/api/platillos';
 
   constructor(
     private http: HttpClient

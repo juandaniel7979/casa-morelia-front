@@ -111,6 +111,9 @@ export class PlatillosComponent implements OnInit {
     })
   }
 
+  deletePlatilloCart(platillo:Platillo){
+    this.storeService.delete(platillo)
+  }
 
   deletePlatillo(){
     const id = this.platilloChosen._id;

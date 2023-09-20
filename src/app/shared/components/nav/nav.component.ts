@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../models/user.model';
@@ -11,6 +11,14 @@ import { StoreService } from 'src/app/platillos/services/store.service';
 })
 export class NavComponent  {
 
+
+  @Output() cartClick = new EventEmitter();
+
+
+  onCartClick(){
+    this.cartClick.emit('cart clicked')
+  }
+
   // token='';
   activeMenu = false;
   counter=0;
@@ -22,8 +30,11 @@ export class NavComponent  {
     private usersService:UsersService
   ) { }
 
+
+
   activarMenu(){
-    this.activeMenu= !this.activeMenu;
+    this.activeMenu= ! this.activeMenu;
+    this.storeService.toggleCart(this.activeMenu);
     console.log(this.activeMenu)
   }
 

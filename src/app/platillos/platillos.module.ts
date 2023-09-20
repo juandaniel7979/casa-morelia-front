@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PlatillosRoutingModule } from './platillos-routing.module';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { FabComponent } from './components/fab/fab.component';
 
 
 
@@ -21,7 +22,8 @@ import { UploadFileComponent } from './components/upload-file/upload-file.compon
     PlatillosComponent,
     ConfirmDialogComponent,
     LayoutPageComponent,
-    UploadFileComponent
+    UploadFileComponent,
+    FabComponent
   ],
   imports: [
     CommonModule,

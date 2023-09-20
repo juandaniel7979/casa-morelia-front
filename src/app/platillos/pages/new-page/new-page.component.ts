@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, switchMap, tap } from 'rxjs';
@@ -20,18 +20,12 @@ import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-
 export class NewPageComponent implements OnInit {
 
   public platilloForm = new FormGroup({
-    id:        new FormControl<string>(''),
+    _id:        new FormControl<string>(''),
     nombre: new FormControl<string>('', { nonNullable: true }),
     precio: new FormControl<number>(0,{ nonNullable: true }),
-    imagen: new FormControl(''),
+    imagen: new FormControl<string>(''),
     descripcion: new FormControl(''),
   });
-
-  public publishers = [
-    { id: 'DC Comics', desc: 'DC - Comics' },
-    { id: 'Marvel Comics', desc: 'Marvel - Comics' },
-  ];
-
 
 
 
@@ -69,6 +63,11 @@ export class NewPageComponent implements OnInit {
 
   }
 
+
+  onFileUploaded(url: string){
+    this.platilloForm.patchValue({imagen:url})
+console.log("Se subio aquí", this.platilloForm.value)
+  }
 
 
   onSubmit():void {

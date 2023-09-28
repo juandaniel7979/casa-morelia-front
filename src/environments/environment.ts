@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://localhost:3001',
+  API_URL: 'https://casa-morelia-back.onrender.com',
 };
 
 /*

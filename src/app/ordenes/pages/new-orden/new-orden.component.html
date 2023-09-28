@@ -1,0 +1,78 @@
+  <h1>
+    {{ currentOrden._id ? 'Editar' : 'Agregar' }}
+    Orden:
+    <small *ngIf="currentOrden._id">{{ currentOrden._id }}</small>
+  </h1>
+
+  <br>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <!-- <form class="form-group" [formGroup]="ordenForm" (ngSubmit)="onSubmit()"> -->
+            <div class="col-12 mt-4 form-group">
+              <label for="name">Nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                required
+                name="nombre"
+                formControlName="nombre"
+              />
+            </div>
+
+            <div class="col-12 mt-4 form-group">
+              <label for="precio">Precio</label>
+              <input
+                class="form-control"
+                for="precio"
+                type="number"
+                required
+                formControlName="precio"
+              />
+            </div>
+
+
+            <div class="col-12 mt-4 form-group">
+              <label>Imagen</label>
+              <input
+                class="form-control"
+                for="imagen"
+                type="text"
+                formControlName="imagen"
+              />
+            </div>
+
+            <div class="col-12 mt-4 form-group">
+              <label>Descripcion</label>
+              <input
+                class="form-control"
+                for="descripcion"
+                type="text"
+                formControlName="descripcion"
+              />
+            </div>
+
+            <br>
+            <div class="col text-center ">
+              <!-- <button class="btn btn-success  form-control" (click)="onSubmit()">Guardar</button> -->
+
+            </div>
+
+          <!-- </form> -->
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <!-- <img [src]="currentOrden.imagen"  height="250px" width="250px"  alt="imagen del héroe" mat-card-image> -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+

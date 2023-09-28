@@ -6,12 +6,16 @@
               <p class="card-text">{{platillo._id}}.</p>
               <p class="card-text">{{platillo.descripcion}}.</p>
               <p class="card-text">{{platillo.precio | currency: 'COP'}}</p>
-              <div class="row">
-                <div class="col">
-                  <a  [routerLink]="['/platillos/edit', platillo._id ]" class="btn btn-primary ">Editar</a>
-                </div>
-                <div class="col">
-                  <a  (click)="onAddtoCart()"  class="btn btn-success stretched-link">Agregar</a>
+              <hr>
+              <div class="row text-center">
+                <div class="d-flex  justify-content-between">
+                  <div class="col ">
+                    <a  [routerLink]="['/platillos/edit', platillo._id ]" style="width:90%" class="btn btn-primary   ">Editar</a>
+                  </div>
+                  <div class="col">
+                    <a  (click)="onAddtoCart()" style="width:100%" class="btn btn-success stretched-link">Agregar</a>
+                  </div>
+
                 </div>
               </div>
           </div>

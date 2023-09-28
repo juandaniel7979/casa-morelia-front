@@ -1,0 +1,11 @@
+<mat-chip-listbox multiple
+aria-label="foo-bar"
+formControlName="fooBar"
+(change)="patchFooBar($event)"
+>
+  <mat-chip-option
+  *ngFor="let i of options" [value]="i"
+  >
+    {{i}}
+  </mat-chip-option>
+</mat-chip-listbox>

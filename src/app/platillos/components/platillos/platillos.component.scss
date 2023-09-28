@@ -41,7 +41,11 @@
   }
 }
 
-
+.scrollable{
+  overflow: auto;
+  margin-left: -5px;
+  position: absolute;
+}
 
 
 
@@ -97,4 +101,11 @@ $primary: #e63946;
       padding-top: 6px;
     }
   }
+}
+
+.detail-button
+{
+  justify-content: flex-end;
+  display: flex;
+  margin-right: -10px;
 }

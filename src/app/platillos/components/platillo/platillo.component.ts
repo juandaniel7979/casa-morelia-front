@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output,EventEmitter} from '@angular/core';
 import { Platillo } from '../../models/platillo.model';
+import { Plato } from 'src/app/ordenes/models/orden.v2.model';
 
 @Component({
   selector: 'app-platillo',
@@ -8,12 +9,24 @@ import { Platillo } from '../../models/platillo.model';
 export class PlatilloComponent {
 
   // @Input() platillo!: Platillo;
+  // @Input() platillo: Plato={
+  //   _id:'',
+  //   plato: {
+  //     _id:'',
+  //     nombre:'',
+  //     imagen:'',
+  //     descripcion:'',
+  //     precio:0
+  //   },
+  //   cantidad:0,
+  //   adiciones:[]
+  // }
   @Input() platillo: Platillo={
     _id:'',
-    precio:0,
-    imagen:"",
     nombre:'',
-    descripcion:''
+      imagen:'',
+      descripcion:'',
+      precio:0
   }
   @Output() addedPlatillo = new EventEmitter<Platillo>();
   @Output() showPlatillo = new EventEmitter<string>();

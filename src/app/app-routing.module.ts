@@ -18,6 +18,10 @@ const routes: Routes = [
     loadChildren: () => import('./platillos/platillos.module').then( m => m.PlatillosModule)
   },
   {
+    path:'ordenes',
+    loadChildren: () => import('./ordenes/ordenes.module').then( m => m.OrdenesModule)
+  },
+  {
     path:'**',
     redirectTo: ''
   }

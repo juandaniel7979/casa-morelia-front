@@ -12,7 +12,7 @@
         <div class="card-body">
           <form class="form-group" [formGroup]="platilloForm" (ngSubmit)="onSubmit()">
             <div class="col-12 mt-4 form-group">
-              <label for="name">Nombre</label>
+              <label for="nombre">Nombre</label>
               <input
                 type="text"
                 class="form-control"
@@ -34,26 +34,32 @@
             </div>
 
 
+
             <div class="col-12 mt-4 form-group">
-              <label>Imagen</label>
+              <label for="descripcion">Descripcion</label>
+              <input
+              class="form-control"
+              for="descripcion"
+              type="text"
+              formControlName="descripcion"
+              />
+            </div>
+            <div class="col-12 mt-4 form-group">
+              <!-- <label for="imagen">Imagen</label> -->
               <input
                 class="form-control"
                 for="imagen"
                 type="text"
+                hidden
                 formControlName="imagen"
               />
             </div>
+            <!-- <div class="col-12 mt-4 form-group">
+              <label for="imagen">Adiciones</label>
+              <app-chips-multi-select [options]="['carne','anvorguesa','papitas']"></app-chips-multi-select>
+            </div> -->
 
-            <div class="col-12 mt-4 form-group">
-              <label>Descripcion</label>
-              <input
-                class="form-control"
-                for="descripcion"
-                type="text"
-                formControlName="descripcion"
-              />
-            </div>
-
+            <hr>
             <upload-file
             (fileUpload)="onFileUploaded($event)"
             ></upload-file>

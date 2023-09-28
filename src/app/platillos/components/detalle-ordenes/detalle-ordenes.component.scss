@@ -1,0 +1,163 @@
+// .products--grid{
+//   display: flex;
+//   flex-direction: column;
+// }
+
+
+// .product-detail{
+//   z-index: 3;
+//   position: fixed;
+//   top: 0;
+//   left: 50%;
+//   bottom: 0;
+//   right: 0;
+//   background: white;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+//   transition: all ease-out .5s;
+//   transform: translateX(100%);
+//   &.active{
+//     transform: translateX(0);
+//   }
+// }
+
+
+// // tablet
+// @media screen and (min-width: 40em) and (max-width: 63.9em){
+//   .products--grid{
+//     display: grid;
+//     grid-template-columns: repeat(4,1fr);
+//     grid-gap:15px;
+//   }
+// }
+
+// //web
+// @media screen and (min-width: 64em){
+//   .products--grid {
+//     display: grid;
+//     grid-template-columns: repeat(5, 1fr);
+//     grid-gap: 15px;
+//   }
+// }
+
+// .scrollable{
+//   overflow: auto;
+//   margin-left: -5px;
+//   position: absolute;
+// }
+
+
+
+// $primary: #e63946;
+// .fab-container {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-end;
+//   align-items: center;
+//   user-select: none;
+//   position: absolute;
+//   bottom: 30px; right: 30px;
+//   .fab {
+//     position: relative;
+//     height: 70px; width: 70px;
+//     background-color: $primary;
+//     border-radius: 50%;
+//     z-index: 4;
+//     &::before {
+//       content: " ";
+//       position: absolute;
+//       bottom: 0; right: 0;
+//       height: 35px; width: 35px;
+//       background-color: inherit;
+//       border-radius: 0 0 10px 0;
+//       z-index: -1;
+//     }
+//     .fab-content {
+//       display: flex;
+//       align-items: center; justify-content: center;
+//       height: 100%; width: 100%;
+//       border-radius: 50%;
+//       .material-icons {
+//         color: white;
+//         font-size: 48px;
+//       }
+//     }
+//   }
+//   .sub-button {
+//     position: absolute;
+//     display: flex;
+//     align-items: center; justify-content: center;
+//     bottom: 10px; right: 10px;
+//     height: 50px; width: 50px;
+//     background-color: $primary;
+//     border-radius: 50%;
+//     transition: all .3s ease;
+//     &:hover {
+//       cursor: pointer;
+//     }
+//     .material-icons {
+//       color: white;
+//       padding-top: 6px;
+//     }
+//   }
+// }
+
+// .detail-button
+// {
+//   justify-content: flex-end;
+//   display: flex;
+// }
+
+
+.offcanvas{
+  width: 750px;
+}
+.offcanvas-btn {
+  right: 770px;
+  visibility: visible;
+}
+
+/* optional junk to toggle the button text */
+.offcanvas-btn span:last-child,
+.offcanvas.show .offcanvas-btn span:first-child {
+}
+
+.offcanvas.show .offcanvas-btn strong:last-of-type{
+color: red;
+}
+
+
+.iconClass{
+  position: relative;
+}
+
+
+ /* Rules for sizing the icon. */
+ .material-icons.md-18 { font-size: 18px; }
+ .material-icons.md-24 { font-size: 24px; }
+ .material-icons.md-36 { font-size: 36px; }
+ .material-icons.md-48 { font-size: 48px; }
+
+ /* Rules for using icons as black on a light background. */
+ .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+ .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+ /* Rules for using icons as white on a dark background. */
+ .material-icons.md-light { color: rgba(255, 255, 255, 1); }
+ .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+.iconClass strong{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  margin-bottom: 30px;
+  display: block;
+}
+.iconClass span{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  margin-bottom: 30px;
+  display: block;
+}

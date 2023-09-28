@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NewPageComponent } from './pages/new-page/new-page.component';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
-import { AdicionesComponent } from './pages/adiciones/adiciones.component';
+import { NewOrdenComponent } from './pages/new-orden/new-orden.component';
+import { OrdenesListComponent } from './pages/ordenes-list/ordenes-list.component';
 
 
 const routes: Routes = [
@@ -10,9 +10,9 @@ const routes: Routes = [
     path: '',
     component: LayoutPageComponent,
     children: [
-      { path: 'new-platillo', component: NewPageComponent },
-      { path: 'edit/:id', component: NewPageComponent },
-      { path: 'adiciones', component: AdicionesComponent },
+      { path: 'list', component: OrdenesListComponent },
+      { path: 'new-orden', component: NewOrdenComponent },
+      { path: 'edit/:id', component: NewOrdenComponent },
       { path: '**', redirectTo: '/' },
     ]
   }
@@ -26,4 +26,4 @@ const routes: Routes = [
     RouterModule
   ],
 })
-export class PlatillosRoutingModule { }
+export class OrdenesRoutingModule { }

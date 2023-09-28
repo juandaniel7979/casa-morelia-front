@@ -20,11 +20,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   exports: [
     MatAutocompleteModule,
     MatButtonModule,
+    MatButtonModule,
     MatCardModule,
+    MatChipsModule,
     MatChipsModule,
     MatDialogModule,
     MatFormFieldModule,
     MatGridListModule,
+    MatIconModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
@@ -32,6 +35,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatSelectModule,
     MatSidenavModule,
     MatSnackBarModule,
+    MatToolbarModule,
     MatToolbarModule,
   ]
 })

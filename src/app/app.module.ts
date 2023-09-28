@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlatillosModule } from './platillos/platillos.module';
 import { MaterialModule } from './material/material.module';
+import { OrdenesModule } from './ordenes/ordenes.module';
 
 
 
@@ -25,7 +26,9 @@ import { MaterialModule } from './material/material.module';
     HttpClientModule,
     PlatillosModule,
     SharedModule,
-    SwiperModule
+    SwiperModule,
+    OrdenesModule,
+    MaterialModule
     ],
   providers: [
   ],

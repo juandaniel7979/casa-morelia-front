@@ -5,6 +5,11 @@ import { single } from 'rxjs';
 import {PlatillosService} from '../../../platillos/services/platillos.service'
 import { CreatePlatilloDTO, Platillo } from '../../models/platillo.model';
 import { StoreService } from '../../services/store.service';
+import { OrdenService } from 'src/app/ordenes/services/orden.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Plato, Orden, PlatoV2, OrdenV2 } from 'src/app/ordenes/models/orden.v2.model';
 
 
 @Component({
@@ -15,7 +20,8 @@ import { StoreService } from '../../services/store.service';
 export class PlatillosComponent implements OnInit {
   // today = new Date();
   // date = new Date(2021, 1 ,21)
-  myShoppingCart: Platillo[] = [];
+  myShoppingCart: Plato[] = [];
+  createOrder: PlatoV2[] = [];
   total=0;
   platillos: Platillo[]= [];
   showPlatilloDetail = false;
@@ -33,7 +39,10 @@ export class PlatillosComponent implements OnInit {
 
   constructor(
     private storeService: StoreService,
-    private platilloService:  PlatillosService
+    private ordenService: OrdenService,
+    private platilloService:  PlatillosService,
+    private router: Router,
+    private snackbar: MatSnackBar,
   ) {
     this.myShoppingCart=this.storeService.getShoppingCart();
   }
@@ -43,7 +52,8 @@ export class PlatillosComponent implements OnInit {
     this.platilloService.getAllPlatillos(10,0)
     .subscribe(data=>{
       this.platillos=data;
-      this.offset +=this.limit;
+      this.offset=this.limit;
+      this.limit=5;
     })
   }
 
@@ -111,7 +121,7 @@ export class PlatillosComponent implements OnInit {
     })
   }
 
-  deletePlatilloCart(platillo:Platillo){
+  deletePlatilloCart(platillo:Plato){
     this.storeService.delete(platillo)
   }
 
@@ -124,12 +134,51 @@ export class PlatillosComponent implements OnInit {
     })
   }
 
+  showSnackbar( message: string ):void {
+    this.snackbar.open( message, 'done', {
+      duration: 2500,
+    })
+  }
+
+
   loadMore(){
     this.platilloService.getPlatillosByPage(this.limit,this.offset)
     .subscribe(data=>{
+      if(data.length===0)return;
       this.platillos=this.platillos.concat(data);
-      this.offset=this.limit;
+      this.offset+=5;
     })
   }
+
+
+  public ordenForm = new FormGroup({
+    _id:        new FormControl<string>(''),
+    platos: new FormControl<Plato[]>([],{ nonNullable: true }),
+    adiciones: new FormControl<string[]>([]),
+    descripcion: new FormControl(''),
+  });
+
+
+  get currentOrden(): Orden {
+    const orden = this.ordenForm.value as Orden;
+    return orden;
+  }
+
+  onAddOrder(){
+    // const {cantidad,plato, } = this.myShoppingCart.map((item)=>{
+    //   return item;
+    // })
+    // console.log(ids)
+    // this.ordenForm.patchValue({platos:this.myShoppingCart})
+    this.createOrder = this.storeService.getShoppingCartV2();
+    const orden = {platos: this.createOrder} as OrdenV2
+    this.ordenService.create(orden)
+    .subscribe( orden => {
+      this.router.navigate(['/ordenes', orden._id ]);
+      this.showSnackbar(`La orden ${ orden._id } fue creada!`);
+      this.router.navigate(['/']);
+    });
+  }
+
 
 }

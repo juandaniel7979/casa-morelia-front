@@ -12,6 +12,11 @@ import { PlatillosRoutingModule } from './platillos-routing.module';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { FabComponent } from './components/fab/fab.component';
+import { ChipsMultiSelectComponent } from './components/chips-multi-select/chips-multi-select.component';
+import { DetalleOrdenesComponent } from './components/detalle-ordenes/detalle-ordenes.component';
+import { AdicionesComponent } from './pages/adiciones/adiciones.component';
+import { DragAndSortComponent } from './components/drag-and-sort/drag-and-sort.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 
@@ -23,15 +28,19 @@ import { FabComponent } from './components/fab/fab.component';
     ConfirmDialogComponent,
     LayoutPageComponent,
     UploadFileComponent,
-    FabComponent
-  ],
+    FabComponent,
+    ChipsMultiSelectComponent,
+    DetalleOrdenesComponent,
+
+    ],
   imports: [
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
     SwiperModule,
     MaterialModule,
-    PlatillosRoutingModule
+    PlatillosRoutingModule,
+    DragDropModule
   ],
   exports:[
 

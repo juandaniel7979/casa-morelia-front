@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Platillo } from '../models/platillo.model';
 import {BehaviorSubject} from 'rxjs';
+import { Plato, PlatoV2 } from 'src/app/ordenes/models/orden.v2.model';
+import { Platillo } from '../models/platillo.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreService {
 
-  private myShoppingCart: Platillo[] = [];
-  private myCart = new BehaviorSubject<Platillo[]>([]);
+  private myShoppingCartV2: PlatoV2[] = [];
+  private myShoppingCart: Plato[] = [];
+  private myCart = new BehaviorSubject<Plato[]>([]);
   // private cartActive = new BehaviorSubject<boolean>(false);
   private cartActive:boolean= false;
 
@@ -17,12 +19,16 @@ export class StoreService {
   constructor() { }
 
   AddPlatillo(platillo:Platillo){
-    this.myShoppingCart.push(platillo);
+    const plato = {_id:'',plato:platillo,cantidad:1,adiciones:[]} as Plato
+    const platoV2 = {_id:'',plato:platillo._id,cantidad:1,adiciones:[]} as PlatoV2
+
+    this.myShoppingCart.push(plato);
+    this.myShoppingCartV2.push(platoV2);
     this.myCart.next(this.myShoppingCart);
   }
 
-  delete(platillo:Platillo){
-    const platilloIndex = this.myShoppingCart.findIndex(item=> item._id===platillo._id);
+  delete(platillo:Plato){
+    const platilloIndex = this.myShoppingCart.findIndex(item=> item.plato._id===platillo.plato._id);
       this.myShoppingCart.splice(platilloIndex,1);
     this.myCart.next(this.myShoppingCart);
   }
@@ -31,8 +37,19 @@ export class StoreService {
     return this.myShoppingCart
   }
 
+  getShoppingCartV2(){
+    // this.myShoppingCart.forEach(item=>{
+    //   const plato = {_id:'',plato:item.plato._id,cantidad:1,adiciones:[]} as PlatoV2
+    //   console.log(plato)
+    //   console.log(item.plato._id)
+    //   this.myShoppingCartV2.push(plato)
+    // })
+    // console.log(this.myShoppingCartV2)
+    return this.myShoppingCartV2
+  }
+
   getTotal(){
-    return this.myShoppingCart.reduce((sum,item)=>sum+item.precio,0);
+    return this.myShoppingCart.reduce((sum,item)=>sum+item.plato.precio,0);
   }
 
   getToggleCart(){

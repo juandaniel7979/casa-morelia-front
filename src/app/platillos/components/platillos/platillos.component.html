@@ -10,40 +10,6 @@
   </div>
 
   <app-detalle-ordenes [showOrdenDetail]="showPlatilloDetail"></app-detalle-ordenes>
-<!-- <div class="product-detail scrollable " [class.active]="!showPlatilloDetail">
-  <div *ngIf="platilloChosen"  class="row position-relative">
-    <div class="container">
-      <div *ngFor="let platillo of myShoppingCart"class="card " >
-        <div class="row no-gutters"  >
-          <div class="col-3">
-            <img  [src]="platillo.plato ? platillo.plato.imagen:'./assets/img/logo.jpg'" style="width: 80%;"  class="card-img-top" alt="Platillo 1">
-          </div>
-          <div class="col-6">
-            <div class="card-body">
-              <h3 class="card-title">{{platillo.plato.nombre}}</h3>
-              <p class="card-text">{{platillo.plato.descripcion}}</p>
-                <div class="col mt-5">
-                    <div class="fab-container">
-                        <div class="fab-content">
-                          <div class="sub-button shadow ">
-                            <span (click)="deletePlatilloCart(platillo)" class="material-icons">delete</span>
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr>
-    <div class="detail-button position-sticky fixed-bottom">
-      <div class="bg-success form-control">
-        <button (click)="onAddOrder()" type="submit" class="btn form-control btn-success ">Agregar</button>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 <!-- <app-fab class=" position-sticky fixed-bottom start-100"
   (cartClick)="togglePlatilloDetail()"

@@ -1,51 +1,6 @@
-<!-- <div class="product-detail scrollable " [class.active]="!showOrdenDetail">
-  <div *ngIf="platilloChosen"  class="row position-sticky">
-    <div class="container">
-      <div *ngFor="let platillo of myShoppingCart"class="card " >
-        <div class="row no-gutters"  >
-          <div class="col-3">
-            <img  [src]="platillo.plato ? platillo.plato.imagen:'./assets/img/logo.jpg'" style="width: 80%;"  class="card-img-top" alt="Platillo 1">
-          </div>
-          <div class="col-6">
-            <div class="card-body">
-              <h3 class="card-title">{{platillo.plato.nombre}}</h3>
-              <p class="card-text">{{platillo.plato.descripcion}}</p>
-                <div class="col mt-5">
-                    <div class="fab-container">
-                        <div class="fab-content">
-                          <div class="sub-button shadow ">
-                            <span (click)="deletePlatilloCart(platillo)" class="material-icons">delete</span>
-                          </div>
-                        </div>
-                      </div>
-                </div>
-                <div class="col mt-5">
-                    <div class="fab-container">
-                        <div class="fab-content">
-                          <div class="sub-button shadow ">
-                            <span (click)="deletePlatilloCart(platillo)" class="material-icons">delete</span>
-                          </div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr>
-    <div class="detail-button position-sticky fixed-bottom">
-      <div class="bg-success form-control">
-        <button (click)="onAddOrder()" type="submit" class="btn form-control btn-success ">Agregar</button>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
 <div class="offcanvas offcanvas-end " data-bs-scroll="true" id="demo">
   <div class=" offcanvas-btn position-absolute mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-        <a class="iconClass">
+        <a (click)="togglePlatilloDetail()" #cartShopping class="iconClass">
           <strong class="material-icons md-48">shopping_cart</strong>
           <span class="badge badge-primary   bg-dark">{{counter}}</span>
         </a>
@@ -62,35 +17,57 @@
         <div class="container">
           <div *ngFor="let platillo of myShoppingCart"class="card " >
             <div class="row no-gutters"  >
-              <div class="col-3">
-                <img  [src]="platillo.plato ? platillo.plato.imagen:'./assets/img/logo.jpg'" style="width: 80%;"  class="card-img-top" alt="Platillo 1">
+              <div class="col">
+                <img  [src]="platillo.plato ? platillo.plato.imagen:'./assets/img/logo.jpg'" style="width: 100%;"  class="card-img-top" alt="Platillo 1">
               </div>
-              <div class="col-6">
+              <div class="col-9">
                 <div class="card-body">
-                  <h3 class="card-title">{{platillo.plato.nombre}}</h3>
-                  <p class="card-text">{{platillo.plato.descripcion}}</p>
-                    <div class="col mt-5">
-                        <div class="fab-container">
-                            <div class="fab-content">
-                              <div class="sub-button shadow ">
-                                <span (click)="deletePlatilloCart(platillo)" class="material-icons">delete</span>
-                              </div>
-                            </div>
-                          </div>
+                  <div class="row ">
+                    <div class="col-9">
+                      <h3 class="card-title">{{platillo.plato.nombre + ' x'+platillo.cantidad}}</h3>
+                      <p class="card-text">{{platillo.plato.descripcion}}</p>
+
+                      <div class="col-12 mt-4 form-group">
+                        <label for="imagen">Adiciones</label>
+                        <app-chips-multi-select [options]="['carne','anvorguesa','papitas']"></app-chips-multi-select>
+                      </div>
+
                     </div>
-                    <div class="col mt-5">
-                        <div class="fab-container">
-                            <div class="fab-content">
-                              <div class="sub-button shadow ">
-                                <span (click)="deletePlatilloCart(platillo)" class="material-icons">delete</span>
-                              </div>
-                            </div>
-                          </div>
+                    <div class="col-3">
+                      <div class="row">
+                        <h4>Cantidad</h4>
+                        <div class="col">
+                          <span (click)="decrementarCantidadPlato(platillo.plato.nombre)" class="material-icons text-danger">-</span>
+                        </div>
+                        <div class="col form-group">
+                        <p>{{platillo.cantidad}}</p>
+                          <!-- <input class="form-control" type="number"  value="{{platillo.cantidad}}" name="" id=""> -->
+                        </div>
+                        <div class="col">
+                          <span (click)="incrementarCantidadPlato(platillo.plato.nombre)" class="material-icons">+</span>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <h4>Acciones</h4>
+                        <div class="col">
+                          <span (click)="deletePlatilloCart(platillo)" class="material-icons text-danger">delete</span>
+                        </div>
+                        <div class="col">
+                                    <span (click)="deletePlatilloCart(platillo)" class="material-icons">delete</span>
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <hr>
+        <div class="detail-button position-sticky  start-100">
+          <h3>Total a pagar:</h3>
+          <h4>{{total |currency:'COP'}}</h4>
         </div>
         <hr>
         <div class="detail-button position-sticky fixed-bottom">

@@ -22,6 +22,13 @@ export class StoreService {
     const plato = {_id:'',plato:platillo,cantidad:1,adiciones:[]} as Plato
     const platoV2 = {_id:'',plato:platillo._id,cantidad:1,adiciones:[]} as PlatoV2
 
+    if(this.myShoppingCart.some(e => e.plato.nombre=== platillo.nombre)) {
+      const i=this.myShoppingCart.findIndex(e => e.plato.nombre=== platillo.nombre)
+      this.myShoppingCart[i].cantidad!+=1;
+      this.myCart.next(this.myShoppingCart);
+      return;
+    }
+
     this.myShoppingCart.push(plato);
     this.myShoppingCartV2.push(platoV2);
     this.myCart.next(this.myShoppingCart);
@@ -46,6 +53,12 @@ export class StoreService {
     // })
     // console.log(this.myShoppingCartV2)
     return this.myShoppingCartV2
+  }
+
+
+  voidCart(){
+    this.myShoppingCart=[];
+    this.myShoppingCartV2=[];
   }
 
   getTotal(){

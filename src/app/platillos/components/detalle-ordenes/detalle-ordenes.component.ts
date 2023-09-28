@@ -26,6 +26,7 @@ export class DetalleOrdenesComponent implements OnInit{
   @Input() showOrdenDetail:boolean= false;
 
 
+  total=0;
   counter=0;
   myShoppingCart: Plato[] = [];
   createOrder: PlatoV2[] = [];
@@ -49,8 +50,34 @@ constructor(
 togglePlatilloDetail(){
   console.log(this.showOrdenDetail)
   this.showOrdenDetail = !this.showOrdenDetail;
+  this.total = this.getTotal();
+  // console.log(this.total)
 }
 
+
+getTotal(){
+  let total=0;
+  this.myShoppingCart.forEach((item)=>{
+
+    total+=item.plato.precio*item.cantidad!;
+  });
+  return total;
+}
+
+incrementarCantidadPlato(plato:string){
+  if(this.myShoppingCart.some(e=> e.plato.nombre===plato)){
+    const i = this.myShoppingCart.findIndex(e=> e.plato.nombre===plato);
+    this.myShoppingCart[i].cantidad!+=1;
+  }
+  this.total = this.getTotal();
+}
+decrementarCantidadPlato(plato:string){
+  if(this.myShoppingCart.some(e=> e.plato.nombre===plato)){
+    const i = this.myShoppingCart.findIndex(e=> e.plato.nombre===plato);
+    this.myShoppingCart[i].cantidad!-=1;
+  }
+  this.total = this.getTotal();
+}
 
 onShowDetail(id:string){
   this.togglePlatilloDetail();
@@ -74,19 +101,21 @@ get currentOrden(): Orden {
 }
 
 onAddOrder(){
-  // const {cantidad,plato, } = this.myShoppingCart.map((item)=>{
-  //   return item;
-  // })
-  // console.log(ids)
-  // this.ordenForm.patchValue({platos:this.myShoppingCart})
+
   this.createOrder = this.storeService.getShoppingCartV2();
   const orden = {platos: this.createOrder} as OrdenV2
   this.ordenService.create(orden)
   .subscribe( orden => {
     this.router.navigate(['/ordenes', orden._id ]);
     this.showSnackbar(`La orden ${ orden._id } fue creada!`);
+    this.voidCart()
     this.router.navigate(['/']);
   });
+}
+
+voidCart(){
+  this.myShoppingCart=[];
+  this.storeService.voidCart()
 }
 
 

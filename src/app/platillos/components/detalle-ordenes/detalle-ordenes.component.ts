@@ -29,7 +29,7 @@ export class DetalleOrdenesComponent implements OnInit{
   total=0;
   counter=0;
   myShoppingCart: Plato[] = [];
-  createOrder: PlatoV2[] = [];
+  idsPlatos: PlatoV2[] = [];
   platilloChosen: Platillo={
     _id:'',
     precio:0,
@@ -47,6 +47,30 @@ constructor(
 ){
   this.myShoppingCart=this.storeService.getShoppingCart();
 }
+
+
+onSubmit():void {
+
+  if ( this.ordenForm.invalid ) return;
+
+  // if ( this.currentOrden.nro_mesa ) {
+  //   this.ordenService.updateOrden( this.currentOrden )
+  //     .subscribe( orden => {
+  //       this.showSnackbar(`${ orden._id } updated!`);
+  //     });
+
+  //   return;
+  // }
+
+  this.ordenService.create( this.currentOrden )
+    .subscribe( platillo => {
+      // TODO: mostrar snackbar, y navegar a /heroes/edit/ platillo._id
+      this.router.navigate(['/heroes/edit', platillo._id ]);
+      this.showSnackbar(`${ platillo._id } created!`);
+      this.router.navigate(['/']);
+    });
+}
+
 togglePlatilloDetail(){
   console.log(this.showOrdenDetail)
   this.showOrdenDetail = !this.showOrdenDetail;
@@ -89,22 +113,22 @@ deletePlatilloCart(platillo:Plato){
 
 
 public ordenForm = new FormGroup({
-  _id:        new FormControl<string>(''),
-  platos: new FormControl<Plato[]>([],{ nonNullable: true }),
-  adiciones: new FormControl<string[]>([]),
-  descripcion: new FormControl(''),
+  platos: new FormControl<PlatoV2[]>([],{ nonNullable: true }),
+  anotaciones: new FormControl<string>(''),
+  nro_mesa: new FormControl<number>(0,{ nonNullable: true }),
 });
 
-get currentOrden(): Orden {
-  const orden = this.ordenForm.value as Orden;
+get currentOrden(): OrdenV2 {
+  this.ordenForm.patchValue({platos:this.storeService.getShoppingCartV2()})
+  const orden = this.ordenForm.value as OrdenV2;
   return orden;
 }
 
 onAddOrder(){
 
-  this.createOrder = this.storeService.getShoppingCartV2();
-  const orden = {platos: this.createOrder} as OrdenV2
-  this.ordenService.create(orden)
+  this.idsPlatos = this.storeService.getShoppingCartV2();
+  // const orden = {platos: this.idsPlatos, nro_mesa:} as OrdenV2
+  this.ordenService.create(this.currentOrden)
   .subscribe( orden => {
     this.router.navigate(['/ordenes', orden._id ]);
     this.showSnackbar(`La orden ${ orden._id } fue creada!`);

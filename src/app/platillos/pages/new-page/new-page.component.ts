@@ -20,6 +20,7 @@ import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-
 export class NewPageComponent implements OnInit {
 
   public platilloForm = new FormGroup({
+    _id: new FormControl<string>('', { nonNullable: true }),
     nombre: new FormControl<string>('', { nonNullable: true }),
     precio: new FormControl<number>(0,{ nonNullable: true }),
     imagen: new FormControl<string>(''),

@@ -4,11 +4,32 @@
           <strong class="material-icons md-48">shopping_cart</strong>
           <span class="badge badge-primary   bg-dark">{{counter}}</span>
         </a>
+    </div>
+    <!--  -->
+  <div class="offcanvas-header">
+    <div class="row w-100">
+      <div class="col-9">
+        <h1 class="offcanvas-title">Crear Orden</h1>
+      </div>
+      <form action="" [formGroup]="ordenForm" (ngSubmit)="onSubmit()">
+        <div class="col-3">
+          <h3 >Nro Mesa</h3>
+          <div class="row text-center">
+            <div class="d-flex justify-content-center">
+              <div class="col">
+                <h1><strong>#</strong></h1>
+              </div>
+              <div class="col">
+                <input type="number" class="form-control w-30" min="1" max="99"  ng-maxlength="2" maxlength="2"  pattern="[0-9]{1}" formControlName="nro_mesa"  placeholder="#" name="nro_mesa" id="nro_mesa"  required>
+                <!-- <input type="text" class="form-control w-30" max="99" inputmode="numeric" pattern="[0-9]{2}"  placeholder="#" name="nro_mesa" id="nro_mesa"  required> -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </form>
 
     </div>
-
-  <div class="offcanvas-header">
-    <h1 class="offcanvas-title">Crear Orden</h1>
     <button type="button" class="btn-close"  data-bs-dismiss="offcanvas"></button>
   </div>
   <div class="offcanvas-body">

@@ -7,6 +7,7 @@ import { MaterialModule } from '../material/material.module';
 import { OrdenesRoutingModule } from './ordenes-routing.module';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { NewOrdenComponent } from './pages/new-orden/new-orden.component';
+import { FacturaComponent } from './components/factura/factura.component';
 
 
 
@@ -14,7 +15,8 @@ import { NewOrdenComponent } from './pages/new-orden/new-orden.component';
   declarations: [
     OrdenesListComponent,
     LayoutPageComponent,
-    NewOrdenComponent
+    NewOrdenComponent,
+    FacturaComponent
   ],
   imports: [
     CommonModule,

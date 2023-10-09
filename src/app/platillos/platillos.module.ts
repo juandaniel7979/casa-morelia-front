@@ -19,6 +19,7 @@ import { DragAndSortComponent } from './components/drag-and-sort/drag-and-sort.c
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
+// LayoutPageComponent,
 
 @NgModule({
   declarations: [
@@ -26,7 +27,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     PlatilloComponent,
     PlatillosComponent,
     ConfirmDialogComponent,
-    LayoutPageComponent,
     UploadFileComponent,
     FabComponent,
     ChipsMultiSelectComponent,

@@ -8,12 +8,12 @@ import { CardComponent } from './components/card/card.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { PlatillosModule } from '../platillos/platillos.module';
+import { MaterialModule } from '../material/material.module';
 
 
 
 @NgModule({
   declarations: [
-    NavComponent,
     ImgComponent,
     CardComponent,
     SidebarComponent,
@@ -23,10 +23,10 @@ import { PlatillosModule } from '../platillos/platillos.module';
     RouterModule,
   ],
   exports:[
-    NavComponent,
     ImgComponent,
     CardComponent,
     SidebarComponent,
+    MaterialModule
   ]
 })
 export class SharedModule { }

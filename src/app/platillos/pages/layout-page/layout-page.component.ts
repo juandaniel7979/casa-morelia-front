@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { NavComponent } from 'src/app/shared/components/nav/nav.component';
+import { SidebarComponent } from 'src/app/shared/components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-layout-page',
   templateUrl: './layout-page.component.html',
-  styles: [
-  ]
+  standalone:true,
+  imports:[NavComponent, RouterModule]
+
 })
 export class LayoutPageComponent {
 

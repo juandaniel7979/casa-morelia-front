@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { OrdenService } from '../../services/orden.service';
 import { Orden } from '../../models/orden.v2.model';
 import { switchMap } from 'rxjs';
@@ -25,6 +25,22 @@ export class OrdenesListComponent implements OnInit {
   constructor(
   private ordenService:OrdenService
   ){}
+  // @ViewChild("sectionToPrint") myNameElem?: ElementRef;
+
+
+  onPrint(divName:string) {
+    // this.myNameElem!.nativeElement.innerHTML = "I   am changed by ElementRef & ViewChild";
+    // console.log(this.myNameElem2?.nativeElement);
+    // if(document.getElementById(divName)?.innerHTML==="")return;
+    // console.log(document.getElementById(divName)?.innerHTML)
+    // const printContents = this.myNameElem!.nativeElement.innerHTML;
+    // console.log(printContents)
+    // const originalContents = document.body.innerHTML;
+    // document.body.innerHTML = printContents;
+    // window.print();
+    // document.body.innerHTML = originalContents;
+}
+
 
 
   ngOnInit(): void {

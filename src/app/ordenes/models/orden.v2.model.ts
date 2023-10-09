@@ -9,6 +9,7 @@ export interface Ordenes {
 
 export interface Orden {
   _id?:          string;
+  nro_mesa?:     number;
   platos?:       Plato[];
   estado?:       string;
   fecha_pedido?: string;
@@ -23,6 +24,7 @@ export interface Plato {
 
 
 export interface OrdenV2 {
+  nro_mesa?:     number;
   platos?:       PlatoV2[];
   estado?:       string;
   fecha_pedido?: string;

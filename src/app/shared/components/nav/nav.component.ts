@@ -3,11 +3,16 @@ import { AuthService } from '../../services/auth.service';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../models/user.model';
 import { StoreService } from 'src/app/platillos/services/store.service';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 // import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
+  standalone: true,
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule],
 })
 export class NavComponent  {
 
